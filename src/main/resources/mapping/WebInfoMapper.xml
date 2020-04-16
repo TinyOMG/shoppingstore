@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.WebInfoMapper" >
+  <resultMap id="BaseResultMap" type="entity.WebInfo" >
+      <id column="ID" property="id" jdbcType="DECIMAL" />
+      <result column="VISITTIME" property="visittime" jdbcType="VARCHAR" />
+    <result column="VISITTIMES" property="visittimes" jdbcType="DECIMAL" />
+  </resultMap>
+
+<insert id="insert" parameterType="entity.WebInfo" useGeneratedKeys="true" keyProperty="id">
+insert into webinfo(ID,VISITTIME,VISITTIMES) values(#{id,jdbcType=DECIMAL},#{visittime,jdbcType=VARCHAR},#{visittimes,jdbcType=DECIMAL})
+</insert>
+
+ <select id="selectAll" resultMap="BaseResultMap" >
+ select ID,VISITTIME,VISITTIMES from webinfo order  by VISITTIME
+ </select>
+
+  <select id="selectByVisitTime" resultMap="BaseResultMap">
+ select VISITTIME,VISITTIMES from webinfo where VISITTIME=#{visittime,jdbcType=VARCHAR}
+  </select>
+
+  <update id="update" parameterType="entity.WebInfo">
+  update webinfo set VISITTIMES=VISITTIMES+1 where VISITTIME=#{visittime,jdbcType=VARCHAR}
+  </update>
+
+
+</mapper>

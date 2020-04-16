@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.OrderinfoMapper" >
+  <resultMap id="BaseResultMap" type="entity.Orderinfo" >
+    <id column="username" property="username" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from orderinfo
+    where username = #{username,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="selectByPrimary" resultMap="BaseResultMap">
+select username from orderinfo where username=#{username}
+  </select>
+  <insert id="insert" parameterType="entity.Orderinfo" >
+    insert into orderinfo (username)
+    values (#{username,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.Orderinfo" >
+    insert into orderinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        username,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
