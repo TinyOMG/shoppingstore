@@ -22,6 +22,7 @@ public class UserinfoController {
     @RequestMapping("/register")
     public int registerInsert(@RequestParam String username,@RequestParam String password,@RequestParam String email){
         Userinfo info=usi.selectByUsername(username);
+        System.out.println("我为了测试代码的更新");
 
         if(info==null){
         Userinfo ui=new Userinfo();
